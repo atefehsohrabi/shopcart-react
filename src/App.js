@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import { Switch, Redirect,switchCase, Route } from 'react-router-dom';
 import './App.css';
+import Store from './store';
+import ProductContextProvider from "./productContextProvider";
+import DetailProduct from './DetailProduct';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <ProductContextProvider>
+    <switch>
+        <Route path="/products" component={Store}/>
+        <Route path="/products:id" component={DetailProduct}/>
+        <Redirect to="/products"/>
+    </switch>
+
+  </ProductContextProvider>
   );
 }
 
